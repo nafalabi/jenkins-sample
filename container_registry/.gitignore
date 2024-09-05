@@ -1,2 +1,4 @@
 registry.password
 data/
+ssl-certs/
+!ssl-certs/openssl.cnf
