@@ -1,0 +1,22 @@
+services:
+  registry:
+    image: registry:2
+    ports:
+    - "5000:5000"
+    environment:
+      REGISTRY_AUTH: htpasswd
+      REGISTRY_AUTH_HTPASSWD_REALM: Registry
+      REGISTRY_AUTH_HTPASSWD_PATH: /auth/registry.password
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
+    volumes:
+      - ./registry.password:/auth/registry.password
+      - ./data:/data
+
+  nginx:
+    image: nginx:stable-alpine3.20
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "9100:9100"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf

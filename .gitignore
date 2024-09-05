@@ -1,0 +1,7 @@
+.vagrant
+
+resources/*
+!resources/.gitkeep
+!resource/docker.service
+!resource/docker.socket
+
